@@ -24,6 +24,12 @@ export type ClashGeneralConfig = {
   'log-level': string;
 };
 
+export type Hashmap = {
+  tp: string;
+  key: string;
+  proxyName:string;
+};
+
 ///// store.proxies
 
 type LatencyHistory = Array<{ time: string; delay: number }>;

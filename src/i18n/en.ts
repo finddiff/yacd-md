@@ -2,6 +2,7 @@ export const data = {
   Overview: 'Overview',
   Proxies: 'Proxies',
   Rules: 'Rules',
+  RulesHashmap: 'RulesHashmap',
   Conns: 'Conns',
   Config: 'Config',
   Logs: 'Logs',

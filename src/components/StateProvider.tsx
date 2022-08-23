@@ -47,6 +47,7 @@ export default function Provider({ initialState, actions = {}, children }) {
   }, [getState]);
   const dispatch = useCallback(
     (actionId, fn) => {
+      // console.log("dispatch",actionId,fn)
       if (typeof actionId === 'function') return actionId(dispatch, getState);
 
       const stateNext = produce(getState(), fn);
@@ -58,6 +59,7 @@ export default function Provider({ initialState, actions = {}, children }) {
         stateRef.current = stateNext;
         setState(stateNext);
       }
+      // console.log("dispatch",actionId, stateNext);
     },
     [getState]
   );
@@ -94,6 +96,7 @@ export function connect(mapStateToProps) {
 // steal from https://github.com/reduxjs/redux/blob/master/src/bindActionCreators.ts
 function bindAction(action, dispatch) {
   return function (...args) {
+    // console.log("action",action)
     // @ts-expect-error ts-migrate(2683) FIXME: 'this' implicitly has type 'any' because it does n... Remove this comment to see the full error message
     return dispatch(action.apply(this, args));
   };
@@ -102,10 +105,12 @@ function bindAction(action, dispatch) {
 function bindActions(actions, dispatch) {
   const boundActions = {};
   for (const key in actions) {
+    // console.log("bindActions",key)
     const action = actions[key];
     if (typeof action === 'function') {
       boundActions[key] = bindAction(action, dispatch);
     } else if (typeof action === 'object') {
+      // console.log("bindActions",key, "is an object call bindActions")
       boundActions[key] = bindActions(action, dispatch);
     }
   }

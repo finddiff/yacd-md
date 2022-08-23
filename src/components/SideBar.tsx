@@ -68,6 +68,11 @@ const pages = [
     iconId: 'command',
     labelText: 'Rules',
   },
+  // {
+  //   to: '/rules/hashmap',
+  //   iconId: 'command',
+  //   labelText: 'RulesHashmap',
+  // },
   {
     to: '/connections',
     iconId: 'link',

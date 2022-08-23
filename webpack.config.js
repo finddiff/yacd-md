@@ -27,25 +27,25 @@ const html = new HTMLPlugin({
 });
 
 const postcssPlugins = () =>
-  [
-    require('postcss-import')(),
-    require('postcss-simple-vars')(),
-    require('postcss-custom-media')({
-      importFrom: [
-        {
-          customMedia: {
-            '--breakpoint-not-small': 'screen and (min-width: 30em)',
-            '--breakpoint-medium':
-              'screen and (min-width: 30em) and (max-width: 60em)',
-            '--breakpoint-large': 'screen and (min-width: 60em)',
+    [
+      require('postcss-import')(),
+      require('postcss-simple-vars')(),
+      require('postcss-custom-media')({
+        importFrom: [
+          {
+            customMedia: {
+              '--breakpoint-not-small': 'screen and (min-width: 30em)',
+              '--breakpoint-medium':
+                  'screen and (min-width: 30em) and (max-width: 60em)',
+              '--breakpoint-large': 'screen and (min-width: 60em)',
+            },
           },
-        },
-      ],
-    }),
-    require('postcss-nested')(),
-    require('autoprefixer')(),
-    require('postcss-extend-rule')(),
-  ].filter(Boolean);
+        ],
+      }),
+      require('postcss-nested')(),
+      require('autoprefixer')(),
+      require('postcss-extend-rule')(),
+    ].filter(Boolean);
 
 const postcssOptions = { plugins: postcssPlugins() };
 
@@ -60,6 +60,7 @@ const bundleAnalyzerPlugin = new BundleAnalyzerPlugin({
 });
 
 const plugins = [
+  new webpack.HotModuleReplacementPlugin(),
   html,
   new webpack.DefinePlugin({
     __DEV__: JSON.stringify(isDev),
@@ -78,8 +79,8 @@ const plugins = [
   // and we don't need locale stuff in moment
   new webpack.IgnorePlugin({ resourceRegExp: /(^\.\/locale$)|(moment$)/ }),
   isDev
-    ? false
-    : new InjectManifest({
+      ? false
+      : new InjectManifest({
         swSrc: './src/sw.ts',
         dontCacheBustURLsMatching: /\.[0-9a-f]{20}\./,
         exclude: [
@@ -92,10 +93,10 @@ const plugins = [
       }),
   // https://github.com/pmmmwh/react-refresh-webpack-plugin
   isDev
-    ? new ReactRefreshWebpackPlugin({
+      ? new ReactRefreshWebpackPlugin({
         overlay: { sockIntegration: 'whm' },
       })
-    : false,
+      : false,
   // isDev ? false : new webpack.HashedModuleIdsPlugin(),
   isDev ? false : cssExtractPlugin,
   isDev ? false : bundleAnalyzerPlugin,
@@ -161,8 +162,8 @@ module.exports = {
             options: {
               modules: {
                 localIdentName: isDev
-                  ? '[path]_[name]_[local]_[hash:base64:5]'
-                  : '[hash:base64:10]',
+                    ? '[path]_[name]_[local]_[hash:base64:5]'
+                    : '[hash:base64:10]',
               },
             },
           },

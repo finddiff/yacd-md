@@ -68,6 +68,7 @@ const routes = [
   { path: '/logs', element: <Logs /> },
   { path: '/proxies', element: <Proxies /> },
   { path: '/rules', element: <Rules /> },
+  // { path: '/rules/hashmap', element: <Rules /> },
   { path: '/about', element: <About /> },
   __DEV__ ? { path: '/style', element: <StyleGuide /> } : false,
 ].filter(Boolean) as PartialRouteObject[];

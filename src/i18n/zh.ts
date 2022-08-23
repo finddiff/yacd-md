@@ -2,6 +2,7 @@ export const data = {
   Overview: '概述',
   Proxies: '代理',
   Rules: '规则',
+  RulesHashmap: '规则缓存',
   Conns: '连接',
   Config: '配置',
   Logs: '日志',

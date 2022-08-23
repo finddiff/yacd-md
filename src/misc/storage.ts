@@ -29,4 +29,24 @@ function clearState() {
   }
 }
 
-export { loadState, saveState, clearState };
+const StorageProxyKey = 'yacd.proxy';
+function saveProxy(proxy) {
+  try {
+    const serialized = JSON.stringify(proxy);
+    localStorage.setItem(StorageProxyKey, serialized);
+  } catch (err) {
+    // ignore
+  }
+}
+
+function loadProxy() {
+  try {
+    const serialized = localStorage.getItem(StorageProxyKey);
+    if (!serialized) return {providers:{"":""}};
+    return JSON.parse(serialized);
+  } catch (err) {
+    return {providers:{"":""}};
+  }
+}
+
+export { loadState, saveState, clearState , saveProxy, loadProxy};

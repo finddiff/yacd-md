@@ -1,4 +1,5 @@
 import { getURLAndInit } from '../misc/request-helper';
+import { saveProxy } from '../misc/storage';
 const endpoint = '/proxies';
 
 /*
@@ -47,7 +48,11 @@ export async function fetchProviderProxies(config) {
   if (res.status === 404) {
     return { providers: {} };
   }
-  return await res.json();
+  const jsonObj = res.json();
+  jsonObj.then(value => {
+    saveProxy(value);
+  })
+  return await jsonObj;
 }
 
 export async function updateProviderByName(config, name) {
