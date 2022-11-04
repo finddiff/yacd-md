@@ -17,6 +17,7 @@ export default function FormDialog({showtext, apiconfig, ID, toggleIsRefreshPaus
     const [proxy, setProxy] = React.useState('DIRECT');
     const proxyList = loadProxy();
     const [domain, setDomain] = React.useState(showtext.toString().split(":")[0] ? showtext.toString().split(":")[0] : showtext);
+    // const [domain, setDomain] = React.useState(showtext.toString());
     const [type, setType] = React.useState('DOMAIN-SUFFIX');
 
     const handleClickOpen = () => {
@@ -72,7 +73,8 @@ export default function FormDialog({showtext, apiconfig, ID, toggleIsRefreshPaus
                         <MenuItem value="DST-PORT">DST-PORT</MenuItem>
                         <MenuItem value="PROCESS-NAME">PROCESS-NAME</MenuItem>
                         <MenuItem value="MATCH">MATCH</MenuItem>
-                        <MenuItem value="ALLIP">ALLIP</MenuItem>
+                        <MenuItem value="DOMAIN-SRC-PORT">DOMAIN-SRC-PORT</MenuItem>
+                        <MenuItem value="DOMAIN-DST-PORT">DOMAIN-DST-PORT</MenuItem>
                     </Select>
                     <TextField autoFocus margin="dense" id="DomainKeyword" label="DomainKeyword" defaultValue={domain}
                                onChange={handleDKChange} fullWidth/>
